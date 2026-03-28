@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<!-- saved from url=(0051)file:///Users/home/Downloads/steerco_report_v2.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SteerCo Summary — UnifyApps</title>
+<link href="./SteerCo Summary — UnifyApps_files/css2" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy:     #0F1123;
+  --purple:   #5B4FE8;
+  --purple-l: #EAE8FD;
+  --teal:     #0D9E7E;
+  --teal-l:   #D8F5EE;
+  --amber:    #C47D10;
+  --amber-l:  #FEF3DC;
+  --coral:    #C9402A;
+  --coral-l:  #FDECEA;
+  --slate:    #6B7280;
+  --slate-l:  #F3F4F6;
+  --border:   #E5E7EB;
+  --bg:       #F7F8FA;
+  --white:    #FFFFFF;
+  --text:     #111827;
+  --muted:    #6B7280;
+  --mono:     'DM Mono', monospace;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* ── HEADER ── */
+.site-header {
+  background: var(--navy);
+  padding: 0 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.logo { display: flex; align-items: center; gap: 10px; }
+.logo-icon {
+  width: 26px; height: 26px;
+  background: var(--purple);
+  border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+}
+.logo-icon svg { width: 14px; height: 14px; }
+.logo-text { font-size: 14px; font-weight: 600; color: #fff; letter-spacing: -0.01em; }
+.header-meta { font-size: 11px; color: rgba(255,255,255,0.35); font-family: var(--mono); }
+
+/* ── PAGE ── */
+.page { padding: 36px 48px 72px; max-width: 1380px; margin: 0 auto; }
+
+/* ── STAT CARDS ── */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 16px;
+  margin-bottom: 40px;
+}
+.stat-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 22px 26px;
+  position: relative;
+  overflow: hidden;
+}
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  border-radius: 14px 14px 0 0;
+}
+.stat-card.c-purple::before { background: var(--purple); }
+.stat-card.c-coral::before  { background: var(--coral); }
+.stat-card.c-amber::before  { background: var(--amber); }
+.stat-label { font-size: 12px; color: var(--muted); font-weight: 500; margin-bottom: 8px; }
+.stat-val { font-size: 40px; font-weight: 600; letter-spacing: -0.04em; line-height: 1; }
+.stat-card.c-purple .stat-val { color: var(--purple); }
+.stat-card.c-coral  .stat-val { color: var(--coral); }
+.stat-card.c-amber  .stat-val { color: var(--amber); }
+.stat-sub { font-size: 12px; color: var(--muted); margin-top: 8px; }
+
+/* ── REGION STRIP ── */
+.region-strip {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0,1fr));
+  overflow: hidden;
+  margin-bottom: 40px;
+}
+.rc {
+  padding: 16px 12px;
+  text-align: center;
+  border-right: 1px solid var(--border);
+}
+.rc:last-child { border-right: none; }
+.rc.gap { background: #FAFAFA; }
+.rc-label { font-size: 10px; color: var(--muted); font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 5px; }
+.rc-num { font-size: 22px; font-weight: 600; letter-spacing: -0.02em; }
+.rc-sub { font-size: 10px; color: var(--muted); margin-top: 2px; }
+
+/* ── SECTION HEADERS ── */
+.sh {
+  font-size: 11px; font-weight: 600; color: var(--muted);
+  letter-spacing: 0.08em; text-transform: uppercase;
+  margin-bottom: 14px;
+  display: flex; align-items: center; gap: 12px;
+}
+.sh .sh-count {
+  background: var(--slate-l); color: var(--slate);
+  font-family: var(--mono); font-size: 11px; font-weight: 600;
+  padding: 1px 8px; border-radius: 10px;
+}
+.sh::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+/* ── ACTIVE ACCOUNT CARDS ── */
+.acc-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0,1fr));
+  gap: 10px;
+  margin-bottom: 40px;
+}
+.acc-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  padding: 14px 15px;
+  transition: box-shadow 0.15s, transform 0.15s;
+}
+.acc-card:hover {
+  box-shadow: 0 4px 14px rgba(0,0,0,0.07);
+  transform: translateY(-1px);
+}
+.acc-top {
+  display: flex; justify-content: space-between;
+  align-items: flex-start; gap: 6px; margin-bottom: 9px;
+}
+.acc-name { font-size: 13px; font-weight: 600; line-height: 1.3; }
+.badge {
+  font-size: 9px; font-weight: 600;
+  padding: 2px 7px; border-radius: 20px;
+  white-space: nowrap; flex-shrink: 0;
+  letter-spacing: 0.02em; font-family: var(--mono);
+}
+.b-w { background: var(--teal-l);   color: var(--teal); }
+.b-f { background: var(--purple-l); color: var(--purple); }
+.b-m { background: var(--amber-l);  color: var(--amber); }
+.b-a { background: var(--slate-l);  color: var(--slate); }
+
+.acc-row {
+  display: flex; align-items: center; gap: 5px;
+  font-size: 11px; color: var(--muted); margin-bottom: 3px;
+}
+.acc-row svg { width: 11px; height: 11px; flex-shrink: 0; opacity: 0.45; }
+.acc-last { font-size: 10px; color: var(--teal); font-family: var(--mono); margin-top: 4px; }
+.acc-div { height: 1px; background: var(--border); margin: 8px 0; }
+.acc-note { font-size: 10px; color: var(--muted); font-style: italic; line-height: 1.4; }
+
+/* ── CADENCE SUMMARY ROW ── */
+.cadence-row {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0,1fr));
+  gap: 10px;
+  margin-bottom: 40px;
+}
+.cad-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  padding: 16px 18px;
+  display: flex; align-items: center; gap: 14px;
+}
+.cad-num { font-size: 28px; font-weight: 600; letter-spacing: -0.03em; }
+.cad-label { font-size: 12px; font-weight: 500; }
+.cad-sub { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+/* ── GAP ACCOUNTS ── */
+.gap-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0,1fr));
+  gap: 10px;
+  margin-bottom: 40px;
+}
+.gap-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--coral);
+  border-radius: 0 10px 10px 0;
+  padding: 13px 14px;
+  transition: box-shadow 0.15s;
+}
+.gap-card:hover { box-shadow: 0 3px 12px rgba(0,0,0,0.06); }
+.gap-card.on-hold  { border-left-color: var(--amber); }
+.gap-card.proposed { border-left-color: var(--purple); }
+.gap-card.not-started { border-left-color: #D1D5DB; }
+.gap-tag {
+  display: inline-block;
+  font-size: 9px; font-weight: 700;
+  letter-spacing: 0.05em; text-transform: uppercase;
+  padding: 2px 6px; border-radius: 4px;
+  margin-bottom: 5px; font-family: var(--mono);
+}
+.t-prop { background: var(--purple-l); color: var(--purple); }
+.t-hold { background: var(--amber-l);  color: var(--amber); }
+.t-ns   { background: var(--slate-l);  color: var(--slate); }
+.t-oth  { background: var(--coral-l);  color: var(--coral); }
+.gap-name { font-size: 13px; font-weight: 600; margin-bottom: 3px; }
+.gap-meta { font-size: 11px; color: var(--muted); margin-bottom: 3px; }
+.gap-note { font-size: 10px; color: var(--muted); font-style: italic; line-height: 1.4; }
+
+/* ── EARLY STAGES ── */
+.early-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0,1fr));
+  gap: 10px;
+  margin-bottom: 40px;
+}
+.early-card {
+  background: var(--white);
+  border: 1px dashed var(--border);
+  border-radius: 10px;
+  padding: 14px 16px;
+}
+.early-name { font-size: 13px; font-weight: 600; margin-bottom: 3px; }
+.early-meta { font-size: 11px; color: var(--muted); }
+
+/* ── FOOTER ── */
+.page-footer {
+  text-align: center; padding: 20px 48px;
+  font-size: 11px; color: var(--muted);
+  border-top: 1px solid var(--border);
+  font-family: var(--mono);
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.acc-card, .gap-card, .early-card {
+  animation: fadeUp 0.3s ease both;
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="logo">
+    <div class="logo-icon">
+      <svg viewBox="0 0 16 16" fill="none">
+        <rect x="2" y="2" width="5" height="5" rx="1.5" fill="white"></rect>
+        <rect x="9" y="2" width="5" height="5" rx="1.5" fill="white" opacity="0.6"></rect>
+        <rect x="2" y="9" width="5" height="5" rx="1.5" fill="white" opacity="0.6"></rect>
+        <rect x="9" y="9" width="5" height="5" rx="1.5" fill="white" opacity="0.3"></rect>
+      </svg>
+    </div>
+    <span class="logo-text">unifyapps</span>
+  </div>
+  <span class="header-meta">SteerCo Intelligence · 28 Mar 2026</span>
+</header>
+
+<div class="page">
+
+  <!-- ── 3 STAT CARDS ── -->
+  <div class="stats-row">
+    <div class="stat-card c-purple">
+      <div class="stat-label">Active SteerCos</div>
+      <div class="stat-val">29</div>
+      <div class="stat-sub">Across all regions</div>
+    </div>
+    <div class="stat-card c-coral">
+      <div class="stat-label">No SteerCo</div>
+      <div class="stat-val">37</div>
+      <div class="stat-sub">Gap accounts</div>
+    </div>
+    <div class="stat-card c-amber">
+      <div class="stat-label">Early Stages</div>
+      <div class="stat-val">5</div>
+      <div class="stat-sub">SteerCo not yet established</div>
+    </div>
+  </div>
+
+  <!-- ── REGION STRIP ── -->
+  <div class="region-strip">
+    <div class="rc"><div class="rc-label">India · Active</div><div class="rc-num" style="color:var(--purple)">17</div><div class="rc-sub">steercos</div></div>
+    <div class="rc"><div class="rc-label">US · Active</div><div class="rc-num" style="color:var(--teal)">7</div><div class="rc-sub">steercos</div></div>
+    <div class="rc"><div class="rc-label">ME · Active</div><div class="rc-num" style="color:var(--amber)">4</div><div class="rc-sub">steercos</div></div>
+    <div class="rc"><div class="rc-label">EUR · Active</div><div class="rc-num" style="color:var(--slate)">1</div><div class="rc-sub">steerco</div></div>
+    <div class="rc gap"><div class="rc-label">India · Gap</div><div class="rc-num" style="color:var(--coral)">8</div><div class="rc-sub">no steerco</div></div>
+    <div class="rc gap"><div class="rc-label">US · Gap</div><div class="rc-num" style="color:var(--coral)">12</div><div class="rc-sub">no steerco</div></div>
+    <div class="rc gap"><div class="rc-label">ME · Gap</div><div class="rc-num" style="color:var(--coral)">17</div><div class="rc-sub">no steerco</div></div>
+    <div class="rc gap"><div class="rc-label">KSA / Other</div><div class="rc-num" style="color:var(--coral)">0</div><div class="rc-sub">no steerco</div></div>
+  </div>
+
+  <!-- ── CADENCE BREAKDOWN ── -->
+  <div class="sh">Cadence breakdown <span class="sh-count">29 active</span></div>
+  <div class="cadence-row">
+    <div class="cad-card">
+      <div class="cad-num" style="color:var(--teal)">18</div>
+      <div><div class="cad-label">Weekly</div><div class="cad-sub">62% of active accounts</div></div>
+    </div>
+    <div class="cad-card">
+      <div class="cad-num" style="color:var(--purple)">3</div>
+      <div><div class="cad-label">Fortnightly</div><div class="cad-sub">DGE · DT · Lowe's</div></div>
+    </div>
+    <div class="cad-card">
+      <div class="cad-num" style="color:var(--amber)">4</div>
+      <div><div class="cad-label">Monthly</div><div class="cad-sub">ISA · JFL · Liva · Wurknow</div></div>
+    </div>
+    <div class="cad-card">
+      <div class="cad-num" style="color:var(--slate)">4</div>
+      <div><div class="cad-label">Ad Hoc</div><div class="cad-sub">Alpha Drive · bOAt · HDFC · Policy Bazaar</div></div>
+    </div>
+  </div>
+
+  <!-- ── ACTIVE STEERCOS ── -->
+  <div class="sh">Active SteerCos <span class="sh-count">29</span></div>
+  <div class="acc-grid">
+
+    <div class="acc-card" style="animation-delay:.00s">
+      <div class="acc-top"><span class="acc-name">Assurant</span><span class="badge b-w">Weekly</span></div>
+      <div class="acc-row"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a7 7 0 100 14A7 7 0 008 1zm0 1a6 6 0 110 12A6 6 0 018 2zm-.5 3v4.25l3.5 2-.5.866L7 10V6h.5z"></path></svg>Rahul Bhanushali · US</div>
+      <div class="acc-row"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 8a3 3 0 100-6 3 3 0 000 6zm-5 5a5 5 0 0110 0H3z"></path></svg>Aaron &amp; Sarah</div>
+      <div class="acc-last">Last: 25 Mar 2026</div>
+    </div>
+
+    <div class="acc-card" style="animation-delay:.02s">
+      <div class="acc-top"><span class="acc-name">Belcorp</span><span class="badge b-w">Weekly</span></div>
+      <div class="acc-row"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a7 7 0 100 14A7 7 0 008 1zm0 1a6 6 0 110 12A6 6 0 018 2zm-.5 3v4.25l3.5 2-.5.866L7 10V6h.5z"></path></svg>Anwar M · US</div>
+      <div class="acc-row"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 8a3 3 0 100-6 3 3 0 000 6zm-5 5a5 5 0 0110 0H3z"></path></svg>Venkat</div>
+      <div class="acc-last">Last: 27 Mar 2026</div>
+    </div>
+
+    <div class="acc-card" style="animation-delay:.04s">
+      <div class="acc-top"><span class="acc-name">Big Basket</span><span class="badge b-w">Weekly</span></div>
+      <div class="acc-row"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a7 7 0 100 14A7 7 0 008 1zm0 1a6 6 0 110 12A6 6 0 018 2zm-.5 3v4.25l3.5 2-.5.866L7 10V6h.5z"></path></svg>Sachin Prabhakar · IND</div>
+      <div class="acc-row"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 8a3 3 0 100-6 3 3 0 000 6zm-5 5a5 5 0 0110 0H3z"></path></svg>Sandeep</div>
+      <div class="acc-last">Last: 25 Mar 2026</div>
+      <div class="acc-div"></div><div class="acc-note">Keshav joining Apr 1st week</div>
+    </div>
+
+    <div class="acc-card" style="animation-delay:.06s">
+      <div class="acc-top"><span class="acc-name">Brown University</span><span class="badge b-w">Weekly</span></div>
+      <div class="acc-row"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a7 7 0 100 14A7 7 0 008 1zm0 1a6 6 0 110 12A6 6 0 018 2zm-.5 3v4.25l3.5 2-.5.866L7 10V6h.5z"></path></svg>Aditya Gupta · US</div>
+      <div class="acc-row"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 8a3 3 0 100-6 3 3 0 000 6zm-5 5a5 5 0 0110 0H3z"></path></svg>Kris Keith (CIO)</div>
+      <div class="acc-last">Last: 9 Mar 2026</div>
+    </div>
+
+    <div class="acc-card" style="animation-delay:.08s">
+      <div class="acc-top"><span class="acc-name">CSP</span><span class="badge b-w">Weekly</span></div>
+      <div class="acc-row"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a7 7 0 100 14A7 7 0 008 1zm0 1a6 6 0 110 12A6 6 0 018 2zm-.5 3v4.25l3.5 2-.5.866L7 10V6h.5z"></path></svg>Rahul Bhanushali · US</div>
+      <div class="acc-row"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 8a3 3 0 100-6 3 3 0 000 6zm-5 5a5 5 0 0110 0H3z"></path></svg>Elizabeth (CEO)</div>
+      <div class="acc-last">Last: 24 Mar 2026</div>
+    </div>
+
+    <div class="acc-card" style="animation-delay:.10s">
+      <div class="acc-top"><span class="acc-name">DTAG</span><span class="badge b-w">Weekly</span></div>
+      <div class="acc-row"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a7 7 0 100 14A7 7 0 008 1zm0 1a6 6 0 110 12A6 6 0 018 2zm-.5 3v4.25l3.5 2-.5.866L7 10V6h.5z"></path></svg>Rahul B. / Mitali J. · IND</div>
+      <div class="acc-row"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 8a3 3 0 100-6 3 3 0 000 6zm-5 5a5 5 0 0110 0H3z"></path></svg>Kartik Sheth (Chief AI Officer)</div>
+      <div class="acc-last">Last: 24 Mar 2026</div>
+    </div>
+
+    <div class="acc-card" style="animation-delay:.12s">
+      <div class="acc-top"><span class="acc-name">Elevation</span><span class="badge b-w">Weekly</span></div>
+      <div class="acc-row"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a7 7 0 100 14A7 7 0 008 1zm0 1a6 6 0 110 12A6 6 0 018 2zm-.5 3v4.25l3.5 2-.5.866L7 10V6h.5z"></path></svg>Anwar M · US</div>
+      <div class="acc-row"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 8a3 3 0 100-6 3 3 0 000 6zm-5 5a5 5 0 0110 0H3z"></path></svg>Asbed</div>
+      <div class="acc-last">Last: 25 Mar 2026</div>
+    </div>
+
+    <div class="acc-card" style="animation-delay:.14s">
+      <div class="acc-top"><span class="acc-name">Fino Bank</span><span class="badge b-w">Weekly</span></div>
+      <div class="acc-row"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a7 7 0 100 14A7 7 0 008 1zm0 1a6 6 0 110 12A6 6 0 018 2zm-.5 3v4.25l3.5 2-.5.866L7 10V6h.5z"></path></svg>Rahul Bhanushali · IND</div>
+      <div class="acc-row"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 8a3 3 0 100-6 3 3 0 000 6zm-5 5a5 5 0 0110 0H3z"></path></svg>Promod (SVP Head Central Ops)</div>
+      <div class="acc-last">Last: 27 Mar 2026</div>
+      <div class="acc-div"></div><div class="acc-note">Get CIO also on call</div>
+    </div>
+
+    <div class="acc-card" style="animation-delay:.16s">
+      <div class="acc-top"><span class="acc-name">Hitachi Energy</span><span class="badge b-w">Weekly</span></div>
+      <div class="acc-row"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a7 7 0 100 14A7 7 0 008 1zm0 1a6 6 0 110 12A6 6 0 018 2zm-.5 3v4.25l3.5 2-.5.866L7 10V6h.5z"></path></svg>Mitali Jinger · IND</div>
+      <div class="acc-last">Last: 21 Mar 2026</div>
+    </div>
+
+    <div class="acc-card" style="animation-delay:.18s">
+      <div class="acc-top"><span class="acc-name">Indofil</span><span class="badge b-w">Weekly</span></div>
+      <div class="acc-row"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a7 7 0 100 14A7 7 0 008 1zm0 1a6 6 0 110 12A6 6 0 018 2zm-.5 3v4.25l3.5 2-.5.866L7 10V6h.5z"></path></svg>Mitali Jinger · IND</div>
+      <div class="acc-last">Last: 21 Mar 2026</div>
+    </div>
+
+    <div class="acc-card" style="animation-delay:.20s">
+      <div class="acc-top"><span class="acc-name">Jubilant Ingrevia</span><span class="badge b-w">Weekly</span></div>
+      <div class="acc-row"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a7 7 0 100 14A7 7 0 008 1zm0 1a6 6 0 110 12A6 6 0 018 2zm-.5 3v4.25l3.5 2-.5.866L7 10V6h.5z"></path></svg>Aditya Gupta · IND</div>
+      <div class="acc-row"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 8a3 3 0 100-6 3 3 0 000 6zm-5 5a5 5 0 0110 0H3z"></path></svg>Hemath / Sanoj (CIO)</div>
+      <div class="acc-last">Last: 11 Mar 2026</div>
+    </div>
+
+    <div class="acc-card" style="animation-delay:.22s">
+      <div class="acc-top"><span class="acc-name">KeKa</span><span class="badge b-w">Weekly</span></div>
+      <div class="acc-row"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a7 7 0 100 14A7 7 0 008 1zm0 1a6 6 0 110 12A6 6 0 018 2zm-.5 3v4.25l3.5 2-.5.866L7 10V6h.5z"></path></svg>Mitali Jinger · IND</div>
+      <div class="acc-row"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 8a3 3 0 100-6 3 3 0 000 6zm-5 5a5 5 0 0110 0H3z"></path></svg>Prateek / Sandeep</div>
+      <div class="acc-last">Last: 20 Mar 2026</div>
+      <div class="acc-div"></div><div class="acc-note">SteerCo proposed with CPO (Manoj)</div>
+    </div>
+
+    <div class="acc-card" style="animation-delay:.24s">
+      <div class="acc-top"><span class="acc-name">MTL</span><span class="badge b-w">Weekly</span></div>
+      <div class="acc-row"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a7 7 0 100 14A7 7 0 008 1zm0 1a6 6 0 110 12A6 6 0 018 2zm-.5 3v4.25l3.5 2-.5.866L7 10V6h.5z"></path></svg>Aditya Gupta · IND</div>
+      <div class="acc-row"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 8a3 3 0 100-6 3 3 0 000 6zm-5 5a5 5 0 0110 0H3z"></path></svg>Thim / Rajan</div>
+      <div class="acc-last">Last: 12 Mar 2026</div>
+    </div>
+
+    <div class="acc-card" style="animation-delay:.26s">
+      <div class="acc-top"><span class="acc-name">Niva Bupa</span><span class="badge b-w">Weekly</span></div>
+      <div class="acc-row"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a7 7 0 100 14A7 7 0 008 1zm0 1a6 6 0 110 12A6 6 0 018 2zm-.5 3v4.25l3.5 2-.5.866L7 10V6h.5z"></path></svg>Aditya Gupta · IND</div>
+      <div class="acc-row"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 8a3 3 0 100-6 3 3 0 000 6zm-5 5a5 5 0 0110 0H3z"></path></svg>Kandarp</div>
+      <div class="acc-last">Last: 26 Mar 2026</div>
+    </div>
+
+    <div class="acc-card" style="animation-delay:.28s">
+      <div class="acc-top"><span class="acc-name">Orascom</span><span class="badge b-w">Weekly</span></div>
+      <div class="acc-row"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a7 7 0 100 14A7 7 0 008 1zm0 1a6 6 0 110 12A6 6 0 018 2zm-.5 3v4.25l3.5 2-.5.866L7 10V6h.5z"></path></svg>Rahul Bhanushali · ME</div>
+      <div class="acc-row"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 8a3 3 0 100-6 3 3 0 000 6zm-5 5a5 5 0 0110 0H3z"></path></svg>Sanjay (CTO)</div>
+      <div class="acc-last">Last: 26 Mar 2026</div>
+    </div>
+
+    <div class="acc-card" style="animation-delay:.30s">
+      <div class="acc-top"><span class="acc-name">Revolut</span><span class="badge b-w">Weekly</span></div>
+      <div class="acc-row"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a7 7 0 100 14A7 7 0 008 1zm0 1a6 6 0 110 12A6 6 0 018 2zm-.5 3v4.25l3.5 2-.5.866L7 10V6h.5z"></path></svg>Devansh · EUR</div>
+      <div class="acc-row"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 8a3 3 0 100-6 3 3 0 000 6zm-5 5a5 5 0 0110 0H3z"></path></svg>Taiwo</div>
+      <div class="acc-div"></div><div class="acc-note">New POC being introduced; steerco to be set up</div>
+    </div>
+
+    <div class="acc-card" style="animation-delay:.32s">
+      <div class="acc-top"><span class="acc-name">Sony</span><span class="badge b-w">Weekly</span></div>
+      <div class="acc-row"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a7 7 0 100 14A7 7 0 008 1zm0 1a6 6 0 110 12A6 6 0 018 2zm-.5 3v4.25l3.5 2-.5.866L7 10V6h.5z"></path></svg>Anwar M · IND</div>
+      <div class="acc-row"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 8a3 3 0 100-6 3 3 0 000 6zm-5 5a5 5 0 0110 0H3z"></path></svg>Pankaj / Sachin</div>
+      <div class="acc-last">Last: 27 Mar 2026</div>
+    </div>
+
+    <div class="acc-card" style="animation-delay:.34s">
+      <div class="acc-top"><span class="acc-name">Virtusa</span><span class="badge b-w">Weekly</span></div>
+      <div class="acc-row"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a7 7 0 100 14A7 7 0 008 1zm0 1a6 6 0 110 12A6 6 0 018 2zm-.5 3v4.25l3.5 2-.5.866L7 10V6h.5z"></path></svg>Rahul Bhanushali · IND</div>
+      <div class="acc-row"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 8a3 3 0 100-6 3 3 0 000 6zm-5 5a5 5 0 0110 0H3z"></path></svg>Shehan</div>
+      <div class="acc-last">Last: 24 Mar 2026</div>
+    </div>
+
+    <div class="acc-card" style="animation-delay:.36s">
+      <div class="acc-top"><span class="acc-name">DGE</span><span class="badge b-f">Fortnightly</span></div>
+      <div class="acc-row"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a7 7 0 100 14A7 7 0 008 1zm0 1a6 6 0 110 12A6 6 0 018 2zm-.5 3v4.25l3.5 2-.5.866L7 10V6h.5z"></path></svg>Al Saheb · ME</div>
+      <div class="acc-row"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 8a3 3 0 100-6 3 3 0 000 6zm-5 5a5 5 0 0110 0H3z"></path></svg>Faisal</div>
+    </div>
+
+    <div class="acc-card" style="animation-delay:.38s">
+      <div class="acc-top"><span class="acc-name">DT</span><span class="badge b-f">Fortnightly</span></div>
+      <div class="acc-row"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a7 7 0 100 14A7 7 0 008 1zm0 1a6 6 0 110 12A6 6 0 018 2zm-.5 3v4.25l3.5 2-.5.866L7 10V6h.5z"></path></svg>Rahul Bhanushali · IND</div>
+      <div class="acc-row"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 8a3 3 0 100-6 3 3 0 000 6zm-5 5a5 5 0 0110 0H3z"></path></svg>Pankaj (VP Engineering)</div>
+      <div class="acc-last">Last: 25 Mar 2026</div>
+    </div>
+
+    <div class="acc-card" style="animation-delay:.40s">
+      <div class="acc-top"><span class="acc-name">Lowe's</span><span class="badge b-f">Fortnightly</span></div>
+      <div class="acc-row"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a7 7 0 100 14A7 7 0 008 1zm0 1a6 6 0 110 12A6 6 0 018 2zm-.5 3v4.25l3.5 2-.5.866L7 10V6h.5z"></path></svg>Hely Gupta · IND</div>
+      <div class="acc-row"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 8a3 3 0 100-6 3 3 0 000 6zm-5 5a5 5 0 0110 0H3z"></path></svg>Swaroop</div>
+      <div class="acc-last">Last: 16 Mar 2026</div>
+      <div class="acc-div"></div><div class="acc-note">Proposed weekly with Amit</div>
+    </div>
+
+    <div class="acc-card" style="animation-delay:.42s">
+      <div class="acc-top"><span class="acc-name">ISA</span><span class="badge b-m">Monthly</span></div>
+      <div class="acc-row"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a7 7 0 100 14A7 7 0 008 1zm0 1a6 6 0 110 12A6 6 0 018 2zm-.5 3v4.25l3.5 2-.5.866L7 10V6h.5z"></path></svg>Sachin Prabhakar · ME</div>
+      <div class="acc-row"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 8a3 3 0 100-6 3 3 0 000 6zm-5 5a5 5 0 0110 0H3z"></path></svg>Fadhel (CEO)</div>
+      <div class="acc-last">Last: 6 Mar 2026</div>
+    </div>
+
+    <div class="acc-card" style="animation-delay:.44s">
+      <div class="acc-top"><span class="acc-name">JFL</span><span class="badge b-m">Monthly</span></div>
+      <div class="acc-row"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a7 7 0 100 14A7 7 0 008 1zm0 1a6 6 0 110 12A6 6 0 018 2zm-.5 3v4.25l3.5 2-.5.866L7 10V6h.5z"></path></svg>Hely Gupta · IND</div>
+      <div class="acc-row"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 8a3 3 0 100-6 3 3 0 000 6zm-5 5a5 5 0 0110 0H3z"></path></svg>Narottam</div>
+      <div class="acc-last">Last: 27 Feb 2026</div>
+    </div>
+
+    <div class="acc-card" style="animation-delay:.46s">
+      <div class="acc-top"><span class="acc-name">Liva</span><span class="badge b-m">Monthly</span></div>
+      <div class="acc-row"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a7 7 0 100 14A7 7 0 008 1zm0 1a6 6 0 110 12A6 6 0 018 2zm-.5 3v4.25l3.5 2-.5.866L7 10V6h.5z"></path></svg>Anwar M · ME</div>
+      <div class="acc-row"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 8a3 3 0 100-6 3 3 0 000 6zm-5 5a5 5 0 0110 0H3z"></path></svg>Niraj / Ram</div>
+    </div>
+
+    <div class="acc-card" style="animation-delay:.48s">
+      <div class="acc-top"><span class="acc-name">Wurknow</span><span class="badge b-m">Monthly</span></div>
+      <div class="acc-row"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a7 7 0 100 14A7 7 0 008 1zm0 1a6 6 0 110 12A6 6 0 018 2zm-.5 3v4.25l3.5 2-.5.866L7 10V6h.5z"></path></svg>Rahul Bhanushali · US</div>
+      <div class="acc-row"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 8a3 3 0 100-6 3 3 0 000 6zm-5 5a5 5 0 0110 0H3z"></path></svg>Mohammed Firdouse (VP Eng)</div>
+      <div class="acc-div"></div><div class="acc-note">Last done Dec; recurring invite in place</div>
+    </div>
+
+    <div class="acc-card" style="animation-delay:.50s">
+      <div class="acc-top"><span class="acc-name">Alpha Drive</span><span class="badge b-a">Ad Hoc</span></div>
+      <div class="acc-row"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a7 7 0 100 14A7 7 0 008 1zm0 1a6 6 0 110 12A6 6 0 018 2zm-.5 3v4.25l3.5 2-.5.866L7 10V6h.5z"></path></svg>Hely Gupta · US</div>
+      <div class="acc-row"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 8a3 3 0 100-6 3 3 0 000 6zm-5 5a5 5 0 0110 0H3z"></path></svg>Nadav</div>
+      <div class="acc-last">Last: 23 Mar 2026</div>
+      <div class="acc-div"></div><div class="acc-note">No direct engagement with Alpha Drive</div>
+    </div>
+
+    <div class="acc-card" style="animation-delay:.52s">
+      <div class="acc-top"><span class="acc-name">bOAt</span><span class="badge b-a">Ad Hoc</span></div>
+      <div class="acc-row"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a7 7 0 100 14A7 7 0 008 1zm0 1a6 6 0 110 12A6 6 0 018 2zm-.5 3v4.25l3.5 2-.5.866L7 10V6h.5z"></path></svg>Anwar M · IND</div>
+      <div class="acc-row"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 8a3 3 0 100-6 3 3 0 000 6zm-5 5a5 5 0 0110 0H3z"></path></svg>Sashawat (CIO)</div>
+      <div class="acc-last">Last: 25 Feb 2026</div>
+    </div>
+
+    <div class="acc-card" style="animation-delay:.54s">
+      <div class="acc-top"><span class="acc-name">HDFC</span><span class="badge b-a">Ad Hoc</span></div>
+      <div class="acc-row"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a7 7 0 100 14A7 7 0 008 1zm0 1a6 6 0 110 12A6 6 0 018 2zm-.5 3v4.25l3.5 2-.5.866L7 10V6h.5z"></path></svg>Anwar M · IND</div>
+      <div class="acc-div"></div><div class="acc-note">Leadership connect</div>
+    </div>
+
+    <div class="acc-card" style="animation-delay:.56s">
+      <div class="acc-top"><span class="acc-name">Policy Bazaar</span><span class="badge b-a">Ad Hoc</span></div>
+      <div class="acc-row"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a7 7 0 100 14A7 7 0 008 1zm0 1a6 6 0 110 12A6 6 0 018 2zm-.5 3v4.25l3.5 2-.5.866L7 10V6h.5z"></path></svg>Rahul Bhanushali · IND</div>
+      <div class="acc-div"></div><div class="acc-note">Leadership Connect</div>
+    </div>
+
+  </div>
+
+  <!-- ── GAP ACCOUNTS ── -->
+  <div class="sh">No SteerCo — gap accounts <span class="sh-count">37</span></div>
+  <div class="gap-grid">
+    <div class="gap-card other"><span class="gap-tag t-oth">Other</span><div class="gap-name">A. Duie Pyle</div><div class="gap-meta">Aditya Gupta · US</div><div class="gap-note">PM said not required; Raman &amp; CEO kept updated directly</div></div>
+    <div class="gap-card not-started"><span class="gap-tag t-ns">Not yet started</span><div class="gap-name">AEG</div><div class="gap-meta">Anwar M · ME</div><div class="gap-note">Delivery yet to start</div></div>
+    <div class="gap-card not-started"><span class="gap-tag t-ns">Not yet started</span><div class="gap-name">AKI</div><div class="gap-meta">Anwar M · ME</div><div class="gap-note">Delivery yet to start</div></div>
+    <div class="gap-card other"><span class="gap-tag t-oth">Other</span><div class="gap-name">Aldar</div><div class="gap-meta">Anwar M · ME</div><div class="gap-note">In touch with Aptiva COO directly</div></div>
+    <div class="gap-card not-started"><span class="gap-tag t-ns">Not yet started</span><div class="gap-name">Ali &amp; Sons</div><div class="gap-meta">Anwar M · ME</div><div class="gap-note">Delivery yet to start</div></div>
+    <div class="gap-card other"><span class="gap-tag t-oth">Other</span><div class="gap-name">AOL</div><div class="gap-meta">Devansh · ME</div><div class="gap-note">—</div></div>
+    <div class="gap-card other"><span class="gap-tag t-oth">Other</span><div class="gap-name">ATI Motors</div><div class="gap-meta">Self-implementation · IND</div><div class="gap-note">—</div></div>
+    <div class="gap-card other"><span class="gap-tag t-oth">Other</span><div class="gap-name">Contentstack</div><div class="gap-meta">— · US</div><div class="gap-note">—</div></div>
+    <div class="gap-card proposed"><span class="gap-tag t-prop">Proposed</span><div class="gap-name">DDA</div><div class="gap-meta">Montaser · ME</div><div class="gap-note">To be scheduled with Matar</div></div>
+    <div class="gap-card other"><span class="gap-tag t-oth">Other</span><div class="gap-name">Digital Ajman</div><div class="gap-meta">Montaser · ME</div><div class="gap-note">—</div></div>
+    <div class="gap-card proposed"><span class="gap-tag t-prop">Proposed</span><div class="gap-name">Docebo</div><div class="gap-meta">Anwar M · US</div><div class="gap-note">Proposed to Sam; does internal steerco &amp; shares updates</div></div>
+    <div class="gap-card other"><span class="gap-tag t-oth">Other</span><div class="gap-name">Goldcast</div><div class="gap-meta">Mitali Jinger · US</div><div class="gap-note">—</div></div>
+    <div class="gap-card proposed"><span class="gap-tag t-prop">Proposed</span><div class="gap-name">Greif</div><div class="gap-meta">Rahul Bhanushali · US</div><div class="gap-note">Weekly calls with Jatinder (VP). SteerCo to be proposed.</div></div>
+    <div class="gap-card proposed"><span class="gap-tag t-prop">Proposed</span><div class="gap-name">GreyOrange</div><div class="gap-meta">Aditya Gupta · US</div><div class="gap-note">Weekly sync with Bharat/Ateet. Propose steerco with Vivek P.</div></div>
+    <div class="gap-card proposed"><span class="gap-tag t-prop">Proposed</span><div class="gap-name">Gulftainer</div><div class="gap-meta">Anwar M · ME</div><div class="gap-note">Weekly steerco proposed with CIO</div></div>
+    <div class="gap-card not-started"><span class="gap-tag t-ns">Not yet started</span><div class="gap-name">GWC</div><div class="gap-meta">Anwar M · ME</div><div class="gap-note">Delivery yet to start</div></div>
+    <div class="gap-card not-started"><span class="gap-tag t-ns">Not yet started</span><div class="gap-name">Happiest Minds</div><div class="gap-meta">Rahul Bhanushali · IND</div><div class="gap-note">Delivery yet to start</div></div>
+    <div class="gap-card other"><span class="gap-tag t-oth">Other</span><div class="gap-name">IRM</div><div class="gap-meta">— · US</div><div class="gap-note">—</div></div>
+    <div class="gap-card proposed"><span class="gap-tag t-prop">Proposed</span><div class="gap-name">KPMG</div><div class="gap-meta">Aditya Gupta · IND</div><div class="gap-note">Weekly steerco proposed with CIO</div></div>
+    <div class="gap-card other"><span class="gap-tag t-oth">Other</span><div class="gap-name">Logik</div><div class="gap-meta">Hely Gupta · IND</div><div class="gap-note">—</div></div>
+    <div class="gap-card not-started"><span class="gap-tag t-ns">Not yet started</span><div class="gap-name">MAG Group</div><div class="gap-meta">Anwar M · ME</div><div class="gap-note">Delivery yet to start</div></div>
+    <div class="gap-card proposed"><span class="gap-tag t-prop">Proposed</span><div class="gap-name">Mphasis</div><div class="gap-meta">Rahul Bhanushali · IND</div><div class="gap-note">Daily connect with Deb &amp; Pankaj. SteerCo to be scheduled with Pavan.</div></div>
+    <div class="gap-card not-started"><span class="gap-tag t-ns">Not yet started</span><div class="gap-name">Nova Water</div><div class="gap-meta">Anwar M · ME</div><div class="gap-note">Delivery yet to start</div></div>
+    <div class="gap-card on-hold"><span class="gap-tag t-hold">On Hold</span><div class="gap-name">Onsurity</div><div class="gap-meta">Sachin Prabhakar · IND</div><div class="gap-note">On Hold</div></div>
+    <div class="gap-card other"><span class="gap-tag t-oth">Other</span><div class="gap-name">PhonePe – Pincode</div><div class="gap-meta">Anwar M · IND</div><div class="gap-note">—</div></div>
+    <div class="gap-card proposed"><span class="gap-tag t-prop">Proposed</span><div class="gap-name">PSG Global</div><div class="gap-meta">Aditya Gupta · US</div><div class="gap-note">Daily sync with Colton. Proposed steerco with David (CIO).</div></div>
+    <div class="gap-card on-hold"><span class="gap-tag t-hold">On Hold</span><div class="gap-name">Qatar Tourism</div><div class="gap-meta">Mitali Jinger · ME</div><div class="gap-note">On Hold</div></div>
+    <div class="gap-card not-started"><span class="gap-tag t-ns">Not yet started</span><div class="gap-name">Salama Insurance</div><div class="gap-meta">Anwar M · ME</div><div class="gap-note">Delivery yet to start</div></div>
+    <div class="gap-card proposed"><span class="gap-tag t-prop">Proposed</span><div class="gap-name">Shaw Industries</div><div class="gap-meta">Rahul Bhanushali · US</div><div class="gap-note">Weekly connect with Destiny &amp; Andy. Proposed steerco with CIO.</div></div>
+    <div class="gap-card other"><span class="gap-tag t-oth">Other</span><div class="gap-name">Sirion Labs</div><div class="gap-meta">Mitali Jinger · IND</div><div class="gap-note">No regular steerco; leadership connect only.</div></div>
+    <div class="gap-card on-hold"><span class="gap-tag t-hold">On Hold</span><div class="gap-name">Smiles</div><div class="gap-meta">Anwar M · ME</div><div class="gap-note">On Hold</div></div>
+    <div class="gap-card not-started"><span class="gap-tag t-ns">Not yet started</span><div class="gap-name">Stabilus</div><div class="gap-meta">Anwar M · ME</div><div class="gap-note">Delivery yet to start</div></div>
+    <div class="gap-card proposed"><span class="gap-tag t-prop">Proposed</span><div class="gap-name">Stowers</div><div class="gap-meta">Rahul Bhanushali · US</div><div class="gap-note">Raised with AE (Taymour). Proposed for 15 Apr.</div></div>
+    <div class="gap-card not-started"><span class="gap-tag t-ns">Not yet started</span><div class="gap-name">TDRA</div><div class="gap-meta">Anwar M · ME</div><div class="gap-note">Delivery yet to start</div></div>
+    <div class="gap-card other"><span class="gap-tag t-oth">Other</span><div class="gap-name">Templafy</div><div class="gap-meta">— · US</div><div class="gap-note">—</div></div>
+    <div class="gap-card other"><span class="gap-tag t-oth">Other</span><div class="gap-name">Walkme</div><div class="gap-meta">— · US</div><div class="gap-note">—</div></div>
+    <div class="gap-card on-hold"><span class="gap-tag t-hold">On Hold</span><div class="gap-name">Wasl</div><div class="gap-meta">Anwar M · ME</div><div class="gap-note">—</div></div>
+  </div>
+
+  <!-- ── EARLY STAGES ── -->
+  <div class="sh">Early stages <span class="sh-count">5</span></div>
+  <div class="early-grid">
+    <div class="early-card"><div class="early-name">CGB Qatar</div><div class="early-meta">Khalid Karama · ME</div></div>
+    <div class="early-card"><div class="early-name">Ministry of Defense (MODHS)</div><div class="early-meta">Khalid Karama · KSA</div></div>
+    <div class="early-card"><div class="early-name">TKF</div><div class="early-meta">Mitali Jinger · IND</div></div>
+    <div class="early-card"><div class="early-name">VAT</div><div class="early-meta">Mitali Jinger · IND</div></div>
+    <div class="early-card"><div class="early-name">Zain Tech</div><div class="early-meta">Al Saheb · ME</div></div>
+  </div>
+
+</div>
+
+<footer class="page-footer">
+  UnifyApps Delivery Intelligence · Source: PM Scorecard · 28 Mar 2026 · 71 accounts total
+</footer>
+
+
+
+</body></html>
